@@ -27,8 +27,7 @@ public class CodeTest {
     }
 
     public static Function<Integer, Integer> composeU(Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
-        // add code here
-        return null;
+        return f1.compose(f2);
     }
 
     public static void writeContentsToConsole() {
