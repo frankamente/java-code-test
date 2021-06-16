@@ -14,16 +14,19 @@ public class CodeTest {
     }
 
     public static String[] uppercaseArray(String[] input) {
-        // add code here
-        return input;
+        return Arrays.stream(input)
+                .map(String::toUpperCase)
+                .toArray(String[]::new);
     }
 
     public static int findWordCount(String text, String wordToFind) {
-        // add code here
-        return 0;
+        final String[] words = text.split(" ");
+        return (int) Arrays.stream(words)
+                .filter(word -> word.equalsIgnoreCase(wordToFind))
+                .count();
     }
 
-    public static Function<Integer,Integer> composeU(Function<Integer,Integer> f1, Function<Integer,Integer> f2){
+    public static Function<Integer, Integer> composeU(Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
         // add code here
         return null;
     }

@@ -1,5 +1,7 @@
 import org.junit.Test;
+
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /*
  *   Please code the tests in the format of reverseArray_returnsExpectedResult. This is an example of how we write our tests at Cardano.
@@ -17,7 +19,7 @@ public class CodeTestSpec {
         final String[] EXPECTED = {"x", "y", "z"};
 
         // act
-        final String[] actual = CodeTest.reverseArray(new String[] {"z", "y", "x"});
+        final String[] actual = CodeTest.reverseArray(new String[]{"z", "y", "x"});
 
         // assert
         assertArrayEquals(EXPECTED, actual);
@@ -25,12 +27,30 @@ public class CodeTestSpec {
 
     @Test
     public void uppercaseArray_returnsExpectedResult() {
+        // arrange
+        final String[] EXPECTED = {"X", "Y", "Z"};
 
+        // act
+        final String[] actual = CodeTest.uppercaseArray(new String[]{"x", "y", "z"});
+
+        // assert
+        assertArrayEquals(EXPECTED, actual);
     }
 
     @Test
     public void findWordCount_returnsExpectedResult() {
+        // arrange
+        final int expectedCountOfWordTHE = 2;
+        final int expectedCountOfWordCAT = 1;
+        final String text = "the cat jumped over the mat";
 
+        // act
+        final int countOfWordTHE = CodeTest.findWordCount(text, "the");
+        final int countOfWordCAT = CodeTest.findWordCount(text, "cat");
+
+        // assert
+        assertEquals(expectedCountOfWordTHE, countOfWordTHE);
+        assertEquals(expectedCountOfWordCAT, countOfWordCAT);
     }
 
     @Test
