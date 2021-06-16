@@ -34,8 +34,10 @@ public class CodeTest {
         // add code here
     }
 
-    public static void handleInvalidArgument() {
-        // add code here
+    public static void handleInvalidArgument(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Input should be positive");
+        }
     }
 
     public static void puzzle() {

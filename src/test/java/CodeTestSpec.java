@@ -79,9 +79,13 @@ public class CodeTestSpec {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void handleInvalidArgument_returnsExpectedResult() {
+        // arrange
+        final int negativeNumber = -1;
 
+        // act
+        CodeTest.handleInvalidArgument(negativeNumber);
     }
 
     @Test
