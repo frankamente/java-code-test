@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Function;
 
 public class CodeTest {
@@ -6,8 +8,9 @@ public class CodeTest {
     }
 
     public static String[] reverseArray(String[] input) {
-        // add code here
-        return input;
+        final String[] inputArrayCopy = Arrays.copyOf(input, input.length);
+        Collections.reverse(Arrays.asList(inputArrayCopy));
+        return inputArrayCopy;
     }
 
     public static String[] uppercaseArray(String[] input) {
