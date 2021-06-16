@@ -18,9 +18,20 @@ Any SQL dialect will suffice
 
 1.	Create a query to return the unique rows in a table
 
+Supposing a table with 3 columns, being _column_primary_key_ the one with primary key and column1, column2 the columns which we want to be unique, we use this:
+
+`select column1, column2 from table1 group by column1, column2 having count(column_primary_key) = 1;`
+
 2.	Write a command to insert values into a table
 
+It depends on what we want to insert it. If we only want to insert data in specified columns we can use:
+
+`insert into table1 (column1, column2) values ('Fran', 'fran29400@gmail.com';`
+
 3.	Create a query that joins two tables together. Note, all rows from the first table must be in the result-set (e.g. given customer and order tables, return all customers and any orders for each customer)
+
+`select * from customer
+inner join order o on customer.id = o.customer_id;`
 
 ### Puzzle
 Write a console application that accepts a random sequence of numbers and loops through looking for 2 equal, consecutive numbers. When found write 'Snap' to the console else print out the number (e.g. 1,3,5,5,'Snap').
