@@ -1,9 +1,16 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.function.Function;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /*
  *   Please code the tests in the format of reverseArray_returnsExpectedResult. This is an example of how we write our tests at Cardano.
@@ -15,6 +22,20 @@ import static org.junit.Assert.assertEquals;
  */
 
 public class CodeTestSpec {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
     @Test
     public void reverseArray_returnsExpectedResult() {
         // arrange
@@ -76,7 +97,17 @@ public class CodeTestSpec {
 
     @Test
     public void writeContentsToConsole_returnsExpectedResult() {
+        final FileReader fileReader = Mockito.mock(FileReader.class);
+        final String pathToFile = "pathToFile";
+        final String sampleText = "This is a sample text";
 
+        when(fileReader.getText(pathToFile))
+                .thenReturn(sampleText);
+
+        final Console consoleMock = Mockito.mock(Console.class);
+
+        CodeTest.writeContentsToConsole(pathToFile, fileReader, consoleMock);
+        verify(consoleMock).writeln(sampleText);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -90,6 +121,15 @@ public class CodeTestSpec {
 
     @Test
     public void puzzle_returnsExpectedResult() {
+        final Console consoleMock = Mockito.mock(Console.class);
+        when(consoleMock.readInt("Enter next number: "))
+                .thenReturn(1)
+                .thenReturn(2)
+                .thenReturn(2);
 
+        CodeTest.puzzle(consoleMock);
+        verify(consoleMock).writeln(1);
+        verify(consoleMock).writeln(2);
+        verify(consoleMock).writeln("Snap");
     }
 }

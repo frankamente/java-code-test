@@ -1,10 +1,17 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Function;
 
 public class CodeTest {
+    private static final String FILE_PATH = "src/test/resources/fileTest.txt";
+
     public static void main(String[] args) {
-        System.out.println("Please replace this with calls to all completed tests.");
+        reverseArray(new String[]{"x", "y", "z"});
+        uppercaseArray(new String[]{"x", "y", "z"});
+        findWordCount("the cat jumped over the mat", "the");
+        writeContentsToConsole(FILE_PATH, new FileReader(), new Console());
+        puzzle(new Console());
     }
 
     public static String[] reverseArray(String[] input) {
@@ -30,8 +37,9 @@ public class CodeTest {
         return f1.compose(f2);
     }
 
-    public static void writeContentsToConsole() {
-        // add code here
+    public static void writeContentsToConsole(String path, FileReader fileReader, Console console) {
+        String text = fileReader.getText(path);
+        console.writeln(text);
     }
 
     public static void handleInvalidArgument(int number) {
@@ -40,7 +48,38 @@ public class CodeTest {
         }
     }
 
-    public static void puzzle() {
-        // add code here
+    public static void puzzle(Console console) {
+        final ArrayList<Integer> inputNumbers = new ArrayList<>();
+        while (!shouldEnd(inputNumbers)) {
+            int numberRead = console.readInt("Enter next number: ");
+            inputNumbers.add(numberRead);
+            if (!shouldEnd(inputNumbers)) {
+                console.writeln(numberRead);
+            }
+        }
+        console.writeln("Snap");
+    }
+
+    private static boolean shouldEnd(ArrayList<Integer> inputNumbers) {
+        if (cantHaveConsecutiveNumbers(inputNumbers)) {
+            return false;
+        }
+        return areLastTwoNumbersConsecutive(inputNumbers);
+    }
+
+    private static boolean areLastTwoNumbersConsecutive(ArrayList<Integer> inputNumbers) {
+        return getLastNumber(inputNumbers).equals(getPenultimateNumber(inputNumbers));
+    }
+
+    private static Integer getLastNumber(ArrayList<Integer> inputNumbers) {
+        return inputNumbers.get(inputNumbers.size() - 1);
+    }
+
+    private static Integer getPenultimateNumber(ArrayList<Integer> inputNumbers) {
+        return inputNumbers.get(inputNumbers.size() - 2);
+    }
+
+    private static boolean cantHaveConsecutiveNumbers(ArrayList<Integer> inputNumbers) {
+        return inputNumbers.size() < 2;
     }
 }

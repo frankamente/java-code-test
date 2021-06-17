@@ -10,7 +10,7 @@ This is a skeleton Java / Gradle version of the test
 
 4.	Write a function 'composeu' that takes two unary functions and returns a unary function that calls them both. A unary function has a single argument and a single return value (e.g. f(d) { return d + 1}
 
-5.	Write a function that reads from a file and prints the contents to the console
+5.	Write a function that reads from a fileReader and prints the contents to the console
 
 6.	Give an example of how a function would handle an invalid argument 
 ### SQL
