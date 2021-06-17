@@ -1,10 +1,6 @@
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.function.Function;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -22,19 +18,6 @@ import static org.mockito.Mockito.when;
  */
 
 public class CodeTestSpec {
-
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
 
     @Test
     public void reverseArray_returnsExpectedResult() {
